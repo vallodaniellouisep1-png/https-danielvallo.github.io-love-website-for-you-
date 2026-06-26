@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    font-family: Arial;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    color:white;
+    text-align:center;
+    overflow:hidden;
+}
+
+/* Image */
+img{
+    width:200px;
+    height:200px;
+    border-radius:50%;
+    margin-top:40px;
+    object-fit:cover;
+    border:4px solid white;
+}
+
+/* Button */
+button{
+    margin-top:20px;
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    background:#ff4d6d;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#ff1e4d;
+}
+
+/* Message */
+.message{
+    margin-top:20px;
+    font-size:18px;
+    opacity:0;
+    transition:1s;
+}
+.show{
+    opacity:1;
+}
+
+/* Floating Hearts */
+.heart{
+    position:absolute;
+    bottom:-10px;
+    color:white;
+    font-size:20px;
+    animation: float 5s linear infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(0);}
+    100%{transform:translateY(-100vh);}
+}
+</style>
+
+</head>
+<body>
+
+<img src="your-image.jpg">
+
+<audio id="music" loop>
+    <source src="your-music.mp3" type="audio/mpeg">
+</audio>
+
+<button onclick="playMusic()">💖 Tap to Start</button>
+
+<div class="message" id="msg">
+    💕 You are the reason I smile every day.<br>
+    Every moment with you feels like a beautiful dream.<br>
+    I’m so lucky to have you in my life. 💖
+</div>
+
+<script>
+function playMusic(){
+    let music = document.getElementById("music");
+    let msg = document.getElementById("msg");
+
+    music.play();
+    msg.classList.add("show");
+
+    createHearts();
+}
+
+// Floating hearts
+function createHearts(){
+    setInterval(()=>{
+        let heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(()=>{ heart.remove(); },5000);
+    },300);
+}
+</script>
+
+</body>
+</html>
